@@ -1,0 +1,36 @@
+<!-- <div class="container">
+  <div class="stats">
+    <p id="heads-count">Heads: 0</p>
+    <p id="tails-count">Tails: 0</p>
+  </div>
+  <div #coin class="coin " id="coin">
+    <div class="heads">
+      <img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Bitcoin-BTC-icon.png"
+        alt="btc-coin" width="128px" />
+    </div>
+    <div class="tails">
+      <img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Ethereum-ETH-icon.png"
+        width="128px" alt="eth-coin" />
+    </div>
+  </div>
+  <div class="buttons">
+    <button id="flip-button" (click)="flip()">
+      Flip Coin
+    </button>
+    <button id="reset-button">
+      Reset
+    </button>
+  </div>
+</div> -->
+
+<mat-grid-list cols="3" rowHeight="100%">
+  <mat-grid-tile>
+    <app-player-info [playerNumber]=1></app-player-info>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-coin-toss></app-coin-toss>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-player-info [playerNumber]=2></app-player-info>
+  </mat-grid-tile>
+</mat-grid-list>
