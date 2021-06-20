@@ -1,18 +1,17 @@
-
 # Crypto Coinflip Game
+
 the game let two players bet on coin flip (BTC and ETH)
 
 ## Setup manual and how to run (locally)
 
 - run [Ganache](https://www.trufflesuite.com/ganache) with localhost port 8545
-- deploy contract in local by using Truffle console
-  - access in to truffle directory ```src/app/cores/services/truffle````
-  - run command ```truffle migrate --network development```
-  - copy KOSCoinflip contract address from deployed json file to set CONTRACT_ADDRESS variable in ```src/app/cores/app-settings.ts``` file
+- install web dependency with command `npm i`
+- install truffle dependency with command `npm run init-contract`
+- deploy contract in local with command `npm run deploy-contract`
 - using angular serve command (if you didn't install, have to install with command `npm install -g @angular/cli`)
-`ng serve`
+  `ng serve`
 - access the game with http://localhost:4200
-- connect MetaMask wallet with local ganache network
+- connect MetaMask wallet with local ganache network and import yours wallet
 - insert wallet address of player 1 and 2
 - select your lucky coin
 - press "Toss!!"
@@ -27,16 +26,17 @@ you can test connect to smart contract with app.js file in truffle directory (ha
 - Node JS library to connect with ethereum provider is [Ethers JS](https://docs.ethers.io/)
 - Wallet is using [MetaMask](https://metamask.io/)
 
-## Knowledge reference  
+## Knowledge reference
 
--  [Ethers JS](https://docs.ethers.io/v5/getting-started/)
--  [Truffle Migrations Explained](https://www.sitepoint.com/truffle-migrations-explained/)
--  [Build a DApp using Ethereum and Angular 6](https://walkingtree.tech/dapps-using-ethereum-angular/)
--  [Ethers JS (my example project)](https://github.com/SurasithIT/EthersJS-App)
--  [Angular animation flip card](https://embed.plnkr.co/plunk/PdjBGS)
--  [Best practices for generating a random uint256](https://ethereum.stackexchange.com/questions/62375/best-practices-for-generating-a-random-uint256)
+- [Ethers JS](https://docs.ethers.io/v5/getting-started/)
+- [Truffle Migrations Explained](https://www.sitepoint.com/truffle-migrations-explained/)
+- [Build a DApp using Ethereum and Angular 6](https://walkingtree.tech/dapps-using-ethereum-angular/)
+- [Ethers JS (my example project)](https://github.com/SurasithIT/EthersJS-App)
+- [Angular animation flip card](https://embed.plnkr.co/plunk/PdjBGS)
+- [Best practices for generating a random uint256](https://ethereum.stackexchange.com/questions/62375/best-practices-for-generating-a-random-uint256)
 
 ## Task
+
 - [x] Create Web Application with mockup UI (has 2 player side with Coin select and wallet address and Coin toss).
 - [x] Create Smart contract with bet function and return winner with trasfer function to pay bet money.
 - [x] connect Web Application with MetaMask wallet for pay.
