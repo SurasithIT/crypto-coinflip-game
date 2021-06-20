@@ -1,4 +1,4 @@
-<div class="coin" id="coin">
+<div class="coin flip-animation" id="coin">
   <div class="heads">
     <img src="/assets/Bitcoin-BTC-icon.png" width="250rem">
   </div>
@@ -12,6 +12,6 @@
       <input matInput required placeholder="ETH" type="number">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="w-full">Toss!!!</button>
+    <button mat-raised-button color="primary" class="w-full" (click)="tossCoin()">Toss!!!</button>
   </form>
 </div>

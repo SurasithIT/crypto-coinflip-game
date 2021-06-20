@@ -29,7 +29,7 @@
     </app-player-info>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-coin-toss></app-coin-toss>
+    <app-coin-toss (tossEvent)="tossedCoin($event)"></app-coin-toss>
   </mat-grid-tile>
   <mat-grid-tile>
     <app-player-info [player]=player2 [playerForm]=player2Form (playerValue)="selectedValue($event)">

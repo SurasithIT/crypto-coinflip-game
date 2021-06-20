@@ -67,7 +67,18 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
+  tossedCoin($event: any) {
+    console.log("tossCoin : ", $event)
+    if (this.player1Form.invalid || this.player2Form.invalid) {
+      window.alert("Form invalid")
+      return;
+    }
+  }
   flip() {
+    if (this.player1Form.invalid || this.player2Form.invalid) {
+      window.alert("Form invalid")
+      return;
+    }
     console.log("Flip coin");
     // let coin = document.querySelector<HTMLElement>(".coin");
     //     let i = Math.floor(Math.random() * 2);

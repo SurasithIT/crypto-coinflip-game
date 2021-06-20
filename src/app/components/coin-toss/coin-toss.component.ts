@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-coin-toss',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coin-toss.component.scss']
 })
 export class CoinTossComponent implements OnInit {
-
+  @Output() tossEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  tossCoin() {
+    this.tossEvent.emit(true);
+  }
 }
