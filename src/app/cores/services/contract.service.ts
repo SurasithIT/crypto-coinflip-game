@@ -68,10 +68,12 @@ export class ContractService {
         return ethers.utils.formatEther(await this.provider.getBalance(address));
     }
 
-    public async bet(player1addr: string, player1res: number, player2addr: string, player2res: number) {
+    public async bet(player1addr: string, player1res: number, player2addr: string, player2res: number): Promise<any> {
         //call bet function from smart contract
-        this.contract
-            .bet(player1addr, player1res, player2addr, player2res)
+        let ms: number = Date.now();
+        console.log(ms)
+        return this.contract
+            .bet(player1addr, player1res, player2addr, player2res, ms)
             .then((result: any) => {
                 console.log(result);
                 return result;
@@ -85,7 +87,7 @@ export class ContractService {
     public async transfer(to: string, from: string, amount: number) {
         //call bet function from smart contract
         let contractWithSigner = this.contract.connect(from);
-        contractWithSigner
+        return contractWithSigner
             .transferFund(to, {
                 from: from,
                 value: amount,

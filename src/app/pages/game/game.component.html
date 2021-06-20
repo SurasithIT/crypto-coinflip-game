@@ -5,7 +5,7 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <app-coin-toss [tossForm]=tossForm (tossEvent)="tossedCoin($event)" [submit]="submit"
-      (flipActionEvent)="getFlipActionEvent($event)" (res)="getResult($event)"></app-coin-toss>
+      (flipActionEvent)="getFlipActionEvent($event)" (res)="getResult($event)" [formValid]="formValid"></app-coin-toss>
   </mat-grid-tile>
   <mat-grid-tile>
     <app-player-info [playerForm]=player2Form (playerValue)="selectedValue($event)" [submit]="submit">

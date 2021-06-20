@@ -16,6 +16,8 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   tossForm: any;
   submit: boolean = false;
   res: any;
+  formValid: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private contractService: ContractService
@@ -48,6 +50,12 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
     )
   }
 
+  ngDoCheck() {
+    if (this.player1Form.invalid == false && this.player1Form.invalid == false) {
+      this.formValid = true;
+    }
+  }
+
   ngAfterViewInit(): void {
     // console.log(coin);
   }
@@ -64,19 +72,20 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   async tossedCoin($event: any) {
-    let _p1Addr = this.player1Form.get("address").value;
-    let _p1ans = coinFace[this.player1Form.get("selectedValue").value];
-    let _p2Addr = this.player2Form.get("address").value;
-    let _p2ans = coinFace[this.player2Form.get("selectedValue").value];
-
-    await this.contractService.bet(_p1Addr, parseInt(_p1ans), _p2Addr, parseInt(_p2ans));
-    // this.flip();
     this.submit = true;
     console.log("tossCoin : ", $event)
     if (this.player1Form.invalid || this.player2Form.invalid) {
       return;
     }
-    window.alert("Flip coin and see who will win.")
+    let _p1Addr = this.player1Form.get("address").value;
+    let _p1ans = coinFace[this.player1Form.get("selectedValue").value];
+    let _p2Addr = this.player2Form.get("address").value;
+    let _p2ans = coinFace[this.player2Form.get("selectedValue").value];
+
+    let betResult = await this.contractService.bet(_p1Addr, parseInt(_p1ans), _p2Addr, parseInt(_p2ans));
+    let betResultValue = betResult[0]
+    let betWinner = betResult[1]
+    console.log(`Result value is ${betResultValue} and winner is ${betWinner}`)
   }
 
   getFlipActionEvent($event: any) {

@@ -8,7 +8,7 @@
     <input matInput required formControlName="address">
   </mat-form-field>
   <div class="balance-label">
-    Your balance is : {{balance}}
+    Your balance is : {{balance}} ETH
   </div>
   <div *ngIf="submit && playerForm.controls.selectedValue.errors?.required != null" class="form-invalid-waring">
     Please select your coin

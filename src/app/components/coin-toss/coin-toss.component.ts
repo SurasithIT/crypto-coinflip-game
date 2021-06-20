@@ -11,6 +11,7 @@ export class CoinTossComponent implements OnInit {
   @Output() res: EventEmitter<string> = new EventEmitter<string>();
   @Input() tossForm: any;
   @Input() submit: boolean = false;
+  @Input() formValid: boolean = false;
   flipAction = true;
   start = true;
   @Output() flipActionEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -23,8 +24,16 @@ export class CoinTossComponent implements OnInit {
   }
 
   tossCoin() {
+    console.log("this.formValid : ", this.formValid)
+
+    if (this.formValid != true) {
+      // window.alert("Form invalid!");
+      this.tossEvent.emit(false);
+      return;
+    }
     this.start = false;
     this.tossEvent.emit(true);
+
     // Call smart contract
     this.flipAction = true;
 
