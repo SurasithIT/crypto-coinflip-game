@@ -1,15 +1,24 @@
 
 # Crypto Coinflip Game
 the game let two players bet on coin flip (BTC and ETH)
-## How to run (locally)
+
+## Setup manual and how to run (locally)
 
 - run [Ganache](https://www.trufflesuite.com/ganache) with localhost port 8545
+- deploy contract in local by using Truffle console
+  - access in to truffle directory ```src/app/cores/services/truffle```
+  - delete old complied contract in ```src/app/cores/services/truffle/build/contracts```
+  - run command ```truffle migrate --network development```
+  - copy KOSCoinflip contract address to set CONTRACT_ADDRESS variable in ```src/app/cores/app-settings.ts``` file
 - using angular serve command (if you didn't install, have to install with command `npm install -g @angular/cli`)
 `ng serve`
 - access the game with http://localhost:4200
+- connect MetaMask wallet with local ganache network
 - insert wallet address of player 1 and 2
 - select your lucky coin
 - press "Toss!!"
+
+you can test connect to smart contract with app.js file in truffle directory (have to set env in .env file first)
 
 ## Tech stack
 
