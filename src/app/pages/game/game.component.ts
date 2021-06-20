@@ -62,6 +62,7 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   tossedCoin($event: any) {
+    // this.flip();
     this.submit = true;
     console.log("tossCoin : ", $event)
     if (this.player1Form.invalid || this.player2Form.invalid) {
@@ -69,32 +70,6 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
     }
     window.alert("Flip coin and see who will win.")
   }
-
-  flip() {
-    if (this.player1Form.invalid || this.player2Form.invalid) {
-      return;
-    }
-    console.log("Flip coin");
-    // let coin = document.querySelector<HTMLElement>(".coin");
-    //     let i = Math.floor(Math.random() * 2);
-    //     // let coin = this.coin
-    //     coin.style.animation = "none";
-    //     if (i) {
-    //       setTimeout(function () {
-    //         coin.style.animation = "spin-heads 3s forwards";
-    //       }, 100);
-    //       // heads++;
-    //     }
-    //     else {
-    //       setTimeout(function () {
-    //         coin.style.animation = "spin-tails 3s forwards";
-    //       }, 100);
-    //       // tails++;
-    //     }
-    //     // setTimeout(updateStats, 3000);
-    //     // disableButton();
-  }
-
 }
 
 

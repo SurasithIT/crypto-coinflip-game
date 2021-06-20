@@ -13,13 +13,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoinComponent } from './components/coin/coin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     PlayerInfoComponent,
-    CoinTossComponent
+    CoinTossComponent,
+    CoinComponent,
   ],
   imports: [
     BrowserModule,

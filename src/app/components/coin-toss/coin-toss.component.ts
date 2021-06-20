@@ -21,4 +21,7 @@ export class CoinTossComponent implements OnInit {
   tossCoin() {
     this.tossEvent.emit(true);
   }
+
+
+
 }
