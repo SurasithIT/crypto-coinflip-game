@@ -25,12 +25,14 @@
 
 <mat-grid-list cols="3" rowHeight="100%">
   <mat-grid-tile>
-    <app-player-info [playerNumber]=1></app-player-info>
+    <app-player-info [player]=player1 [playerForm]=player1Form (playerValue)="selectedValue($event)">
+    </app-player-info>
   </mat-grid-tile>
   <mat-grid-tile>
     <app-coin-toss></app-coin-toss>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-player-info [playerNumber]=2></app-player-info>
+    <app-player-info [player]=player2 [playerForm]=player2Form (playerValue)="selectedValue($event)">
+    </app-player-info>
   </mat-grid-tile>
 </mat-grid-list>

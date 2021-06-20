@@ -1,17 +1,18 @@
-<form class="example-form">
-  <h3>Player {{playerNumber}}</h3>
+<form [formGroup]="playerForm">
+  <h3>Player {{playerForm.value.playerNumber}}</h3>
 
   <mat-form-field class="w-full" appearance="outline">
     <mat-label>address</mat-label>
-    <input matInput required>
+    <input matInput required formControlName="address">
   </mat-form-field>
 
   <p>
-    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle value="BTC">
+    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style"
+      formControlName="selectedValue">
+      <mat-button-toggle value="BTC" (change)="onValChange($event.value)">
         <img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Bitcoin-BTC-icon.png"
           width="18rem" />&nbsp;&nbsp;BTC</mat-button-toggle>
-      <mat-button-toggle value="BTC">
+      <mat-button-toggle value="ETH" (change)="onValChange($event.value)">
         <img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Ethereum-ETH-icon.png"
           width="18rem">&nbsp;&nbsp;ETH</mat-button-toggle>
     </mat-button-toggle-group>
