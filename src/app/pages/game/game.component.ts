@@ -119,7 +119,7 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
       setTimeout(() => {
         window.alert("Winner is player " + winner)
       }, 1000)
-      // this.transfer();
+      this.transfer();
     }
   }
   getResult($event: any) {
