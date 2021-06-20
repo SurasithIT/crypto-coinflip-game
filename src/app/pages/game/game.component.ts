@@ -17,6 +17,9 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   submit: boolean = false;
   res: any;
   formValid: boolean = false;
+  betReult: any = null;
+  winnerAddress: string = "";
+  loserAddress: string = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -82,8 +85,10 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
     let _p2Addr = this.player2Form.get("address").value;
     let _p2ans = coinFace[this.player2Form.get("selectedValue").value];
 
-    let betResult = await this.contractService.bet(_p1Addr, parseInt(_p1ans), _p2Addr, parseInt(_p2ans));
+    let betResult = await this.contractService.bet(_p1Addr, parseInt(_p1ans), _p2Addr, parseInt(_p2ans))
+      .catch((err) => { window.alert("Call smart contract error") });
     let betResultValue = betResult[0]
+    this.betReult = betResultValue;
     let betWinner = betResult[1]
     console.log(`Result value is ${betResultValue} and winner is ${betWinner}`)
   }
@@ -96,8 +101,12 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
       let winner: number = 0;
       if (this.player1Form.get("selectedValue").value == this.res) {
         winner = this.player1Form.get("playerNumber").value;
+        this.winnerAddress = this.player1Form.get("address").value;
+        this.loserAddress = this.player2Form.get("address").value;
       } else if (this.player2Form.get("selectedValue").value == this.res) {
         winner = this.player2Form.get("playerNumber").value;
+        this.winnerAddress = this.player2Form.get("address").value;
+        this.loserAddress = this.player1Form.get("address").value;
       }
       setTimeout(() => {
         window.alert("Winner is player " + winner)
@@ -106,6 +115,10 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   }
   getResult($event: any) {
     this.res = $event;
+  }
+
+  async transfer() {
+    let transferRes = await this.contractService.transfer(this.winnerAddress, this.loserAddress, this.tossForm.get("bet").value)
   }
 }
 

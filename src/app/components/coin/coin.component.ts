@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { ContractService } from 'src/app/cores/services/contract.service';
 
 @Component({
   selector: 'app-coin',
@@ -46,8 +47,8 @@ import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Outpu
       state('inactive', style({
         transform: 'rotateY(0)'
       })),
-      transition('active => inactive', animate('500ms ease-out')),
-      transition('inactive => active', animate('500ms ease-in'))
+      transition('active => inactive', animate('250ms ease-out')),
+      transition('inactive => active', animate('250ms ease-in'))
     ])
   ]
 })
@@ -60,7 +61,9 @@ export class CoinComponent implements OnInit, AfterViewInit, OnChanges {
     active: "BTC",
     inactive: "ETH",
   }
-  constructor() { }
+  constructor(
+    private contractService: ContractService
+  ) { }
 
   ngOnInit(): void {
 
@@ -76,7 +79,11 @@ export class CoinComponent implements OnInit, AfterViewInit, OnChanges {
       while (this.flipAction) {
         await this.toggleFlip();
       }
+      if (this.result !== this.contractService.getBetResult()) {
+        await this.toggleFlip();
+      }
     }, 100)
+    // console.log("bet result from coin ", this.betReult)
     this.res.emit(this.result[this.flip]);
   }
 
@@ -85,7 +92,7 @@ export class CoinComponent implements OnInit, AfterViewInit, OnChanges {
       setTimeout(() => {
         this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
         resolve('true');
-      }, 500)
+      }, 250)
     });
   }
 

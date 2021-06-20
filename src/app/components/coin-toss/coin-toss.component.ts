@@ -12,6 +12,8 @@ export class CoinTossComponent implements OnInit {
   @Input() tossForm: any;
   @Input() submit: boolean = false;
   @Input() formValid: boolean = false;
+  @Input() betReult: any = null;
+
   flipAction = true;
   start = true;
   @Output() flipActionEvent: EventEmitter<boolean> = new EventEmitter<boolean>();

@@ -18,7 +18,14 @@ let contract = new ethers.Contract(contractAddress, contractABI, provider);
 // console.log(contract);
 
 // init contract with sign wallet
-let contractWithSigner = contract.connect(wallet);
+// let contractWithSigner = contract.connect(wallet);
+
+var signer = provider.getSigner();
+console.log(wallet);
+console.log(signer);
+signer.getAddress().then((res) => console.log(res));
+
+let contractWithSigner = contract.connect(signer);
 
 const getSender = async () => {
   contract
@@ -33,10 +40,10 @@ const getSender = async () => {
 
 const transfer = async (_transferTo, _transferFrom, _amount) => {
   contractWithSigner
-    .transferFund(_transferTo, {
+    .transfer(_transferTo, {
       from: _transferFrom,
       value: _amount,
-      //   value: web3.toWei(_amount, "ether"),
+      // value: web3.toWei(_amount, "ether"),
     })
     .then((result) => {
       console.log(result);
@@ -74,8 +81,8 @@ const bet = async () => {
 const setPlayer = async () => {
   contractWithSigner
     .setPlayer(
-      "0x9A524a1f23C44572A1b0A9D278C1731f74EbcA50",
-      "0x0e280357a8Ff7844257452C2a40C9dD7B4ebD436"
+      "0x0e280357a8Ff7844257452C2a40C9dD7B4ebD436",
+      "0x9A524a1f23C44572A1b0A9D278C1731f74EbcA50"
     )
     .then((result) => {
       console.log(result);
@@ -86,4 +93,9 @@ const setPlayer = async () => {
 };
 
 // setPlayer();
-bet();
+// bet();
+transfer(
+  "0x0e280357a8Ff7844257452C2a40C9dD7B4ebD436",
+  "0x9A524a1f23C44572A1b0A9D278C1731f74EbcA50",
+  ethers.utils.parseEther("1")
+);

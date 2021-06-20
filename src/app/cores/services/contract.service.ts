@@ -16,6 +16,7 @@ export class ContractService {
     contractAddress = AppSettings.CONTRACT_ADDRESS;
     contractABI = this.contractJSON.abi;
     contract: any = null;
+    betResult: any = null;
     constructor() {
     }
 
@@ -76,6 +77,7 @@ export class ContractService {
             .bet(player1addr, player1res, player2addr, player2res, ms)
             .then((result: any) => {
                 console.log(result);
+                this.betResult = result;
                 return result;
             })
             .catch((err: any) => {
@@ -84,13 +86,18 @@ export class ContractService {
             });
     }
 
+    public async getBetResult() {
+        return this.betResult;
+    }
+
     public async transfer(to: string, from: string, amount: number) {
         //call bet function from smart contract
         let contractWithSigner = this.contract.connect(from);
+        console.log("contractWithSigner", contractWithSigner)
         return contractWithSigner
-            .transferFund(to, {
+            .transfer(to, {
                 from: from,
-                value: amount,
+                value: ethers.utils.parseEther(amount.toString()),
                 //   value: web3.toWei(_amount, "ether"),
             })
             .then((result: any) => {
