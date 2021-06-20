@@ -1,74 +1,73 @@
-// import { Injectable } from '@angular/core';
-// import Web3 from 'web3';
-// // import * as Web3 from 'web3';
+import { Injectable } from '@angular/core';
+import { ethers } from 'ethers';
 
-// declare let require: any;
-// declare let window: any;
+declare let window: any;
 
-// // let tokenAbi = require('./tokenContract.json');
+@Injectable({
+    providedIn: 'root'
+})
+export class ContractService {
+    provider: any = null;
+    signer: any = null;
+    account: any = null;
+    constructor() {
+    }
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ContractService {
-//   private _account: string = "";
-//   private _web3: any;
+    public async initial() {
+        if (typeof window.ethereum !== 'undefined') {
+            await window.ethereum.enable()
 
-//   private _tokenContract: any;
-//   private _tokenContractAddress: string = "0xbc84f3bf7dd607a37f9e5848a6333e6c188d926c";
+            // Use Mist/MetaMask's provider
+            this.provider = new ethers.providers.Web3Provider(window.ethereum);
+            this.signer = this.provider.getSigner()
+            // this.provider.getBalance().then((result: any) => {
+            //     console.log(result)
+            // }).catch((err: any) => {
+            //     console.error(err);
+            // });
+            // this._web3 = new Web3(window.web3.currentProvider);
 
-//   constructor() {
-//     if (typeof window.web3 !== 'undefined') {
-//       // Use Mist/MetaMask's provider
-//       this._web3 = new Web3(window.web3.currentProvider);
+            //   if (this._web3.version.network !== '4') {
+            //     alert('Please connect to the Rinkeby network');
+            //   }
+        } else {
+            console.warn(
+                'Please use a dapp browser like mist or MetaMask plugin for chrome'
+            );
+        }
+    }
 
-//       if (this._web3.version.network !== '4') {
-//         alert('Please connect to the Rinkeby network');
-//       }
-//     } else {
-//       console.warn(
-//         'Please use a dapp browser like mist or MetaMask plugin for chrome'
-//       );
-//     }
-//   }
+    public async getSigner(): Promise<any> {
+        this.signer = this.provider.getSigner()
+        return this.signer;
+    }
 
-//   private async getAccount(): Promise<string> {
-//     if (this._account == null) {
-//       this._account = await new Promise((resolve, reject) => {
-//         this._web3.eth.getAccounts((err: any, accs: any) => {
-//           if (err != null) {
-//             alert('There was an error fetching your accounts.');
-//             return;
-//           }
-//           if (accs.length === 0) {
-//             alert(
-//               'Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.'
-//             );
-//             return;
-//           }
-//           resolve(accs[0]);
-//         })
-//       }) as string;
+    public async getSignerAddress(): Promise<any> {
+        return this.signer.getAddress();
+    }
 
-//       this._web3.eth.defaultAccount = this._account;
-//     }
 
-//     return Promise.resolve(this._account);
-//   }
+    public async getSingerBalance(): Promise<string> {
+        return ethers.utils.formatEther(await this.signer.getBalance());
+    }
 
-//   public async getUserBalance(): Promise<number> {
-//     let account = await this.getAccount();
+    public async getBalance(address: string): Promise<string> {
+        return ethers.utils.formatEther(await this.provider.getBalance(address));
+    }
 
-//     return new Promise((resolve, reject) => {
-//       let _web3 = this._web3;
-//       this._tokenContract.balanceOf.call(account, function (err: any, result: any) {
-//         if (err != null) {
-//           reject(err);
-//         }
+    //   public async getUserBalance(): Promise<number> {
+    //     let account = await this.getAccount();
 
-//         resolve(_web3.fromWei(result));
-//       });
-//     }) as Promise<number>;
-//   }
-//   // this._tokenContract = this._web3.eth.contract(tokenAbi).at(this._tokenContractAddress);
-// }
+    //     return new Promise((resolve, reject) => {
+    //       let _web3 = this._web3;
+    //       this._tokenContract.balanceOf.call(account, function (err: any, result: any) {
+    //         if (err != null) {
+    //           reject(err);
+    //         }
+
+    //         resolve(_web3.fromWei(result));
+    //       });
+    //     }) as Promise<number>;
+    //   }
+    // this._tokenContract = this._web3.eth.contract(tokenAbi).at(this._tokenContractAddress);
+}

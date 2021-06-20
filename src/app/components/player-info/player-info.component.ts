@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContractService } from 'src/app/cores/services/contract.service';
 
 @Component({
   selector: 'app-player-info',
@@ -10,9 +11,10 @@ export class PlayerInfoComponent implements OnInit, OnChanges {
   @Input() playerForm: any;
   @Output() playerValue: EventEmitter<any> = new EventEmitter<any>();
   @Input() submit: boolean = false;
-
+  balance: string = "0";
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private contracService: ContractService
   ) { }
 
   ngOnInit(): void {
@@ -22,9 +24,10 @@ export class PlayerInfoComponent implements OnInit, OnChanges {
     //   selectedValue: [this.player.selectedValue, Validators.required],
     // })
   }
-  ngOnChanges(): void {
+  async ngOnChanges(): Promise<void> {
     // setTimeout(() => {
     this.onChanges();
+
 
     //   this.dataForm.get("playerNumber").setValue(this.player.playerNumber);
     //   this.dataForm.get("address").setValue(this.player.address);
@@ -41,8 +44,11 @@ export class PlayerInfoComponent implements OnInit, OnChanges {
 
   onChanges(): void {
     let me = this;
-    this.playerForm.valueChanges.subscribe((val: any) => {
+    this.playerForm.valueChanges.subscribe(async (val: any) => {
       me.playerValue.emit(this.playerForm);
+      if (this.playerForm.get("address").value != null && this.playerForm.get("address").value != "") {
+        this.balance = await this.contracService.getBalance(this.playerForm.get("address").value);
+      }
     });
   }
 

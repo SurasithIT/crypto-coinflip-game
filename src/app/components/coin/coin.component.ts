@@ -52,7 +52,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
   ]
 })
 export class CoinComponent implements OnInit, AfterViewInit {
-
+  flipAction: boolean = true;
   flip: string = 'inactive';
   constructor() { }
 
@@ -63,7 +63,7 @@ export class CoinComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
 
     setTimeout(async () => {
-      while (true) {
+      while (this.flipAction) {
         await this.toggleFlip();
       }
     }, 100)
@@ -78,9 +78,6 @@ export class CoinComponent implements OnInit, AfterViewInit {
         resolve('true');
       }, 500)
     });
-    // setTimeout(() => {
-    //   this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
-    // }, 100)
   }
 
 }

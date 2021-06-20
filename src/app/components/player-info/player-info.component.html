@@ -7,17 +7,19 @@
     <mat-label>address</mat-label>
     <input matInput required formControlName="address">
   </mat-form-field>
-
+  <div class="balance-label">
+    Your balance is : {{balance}}
+  </div>
   <div *ngIf="submit && playerForm.controls.selectedValue.errors?.required != null" class="form-invalid-waring">
     Please select your coin
   </div>
   <p>
     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style"
       formControlName="selectedValue">
-      <mat-button-toggle value="BTC" (change)="onValChange($event.value)">
+      <mat-button-toggle value="BTC">
         <img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Bitcoin-BTC-icon.png"
           width="18rem" />&nbsp;&nbsp;BTC</mat-button-toggle>
-      <mat-button-toggle value="ETH" (change)="onValChange($event.value)">
+      <mat-button-toggle value="ETH">
         <img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Ethereum-ETH-icon.png"
           width="18rem">&nbsp;&nbsp;ETH</mat-button-toggle>
     </mat-button-toggle-group>
