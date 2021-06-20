@@ -7,6 +7,9 @@ the game let two players bet on coin flip (BTC and ETH)
 - using angular serve command (if you didn't install, have to install with command `npm install -g @angular/cli`)
 `ng serve`
 - access the game with http://localhost:4200
+- insert wallet address of player 1 and 2
+- select your lucky coin
+- press "Toss!!"
 
 ## Tech stack
 
@@ -30,5 +33,5 @@ the game let two players bet on coin flip (BTC and ETH)
 - [x] Create Smart contract with bet function and return winner with trasfer function to pay bet money.
 - [x] connect Web Application with MetaMask wallet for pay.
 - [x] connect Web Application with smart contract for call contract function.
-- [ ] Deploy smart contract with testnet using Infura.
+- [ ] Deploy smart contract with testnet using Infura. (cannot deploy yet because of gasprice error)
 - [ ] Deploy web app with Docker (with NGINX).
