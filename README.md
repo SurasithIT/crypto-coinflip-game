@@ -29,6 +29,6 @@ the game let two players bet on coin flip (BTC and ETH)
 - [x] Create Web Application with mockup UI (has 2 player side with Coin select and wallet address and Coin toss).
 - [x] Create Smart contract with bet function and return winner with trasfer function to pay bet money.
 - [x] connect Web Application with MetaMask wallet for pay.
-- [ ] connect Web Application with smart contract for call contract function.
+- [x] connect Web Application with smart contract for call contract function.
 - [ ] Deploy smart contract with testnet using Infura.
 - [ ] Deploy web app with Docker (with NGINX).
