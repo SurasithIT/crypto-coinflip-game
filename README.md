@@ -6,10 +6,9 @@ the game let two players bet on coin flip (BTC and ETH)
 
 - run [Ganache](https://www.trufflesuite.com/ganache) with localhost port 8545
 - deploy contract in local by using Truffle console
-  - access in to truffle directory ```src/app/cores/services/truffle```
-  - delete old complied contract in ```src/app/cores/services/truffle/build/contracts```
+  - access in to truffle directory ```src/app/cores/services/truffle````
   - run command ```truffle migrate --network development```
-  - copy KOSCoinflip contract address to set CONTRACT_ADDRESS variable in ```src/app/cores/app-settings.ts``` file
+  - copy KOSCoinflip contract address from deployed json file to set CONTRACT_ADDRESS variable in ```src/app/cores/app-settings.ts``` file
 - using angular serve command (if you didn't install, have to install with command `npm install -g @angular/cli`)
 `ng serve`
 - access the game with http://localhost:4200
