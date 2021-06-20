@@ -111,6 +111,7 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
       setTimeout(() => {
         window.alert("Winner is player " + winner)
       }, 1000)
+      this.transfer();
     }
   }
   getResult($event: any) {
@@ -118,7 +119,7 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   async transfer() {
-    let transferRes = await this.contractService.transfer(this.winnerAddress, this.loserAddress, this.tossForm.get("bet").value)
+    let transferRes = await this.contractService.transferByMetaMask(this.winnerAddress, this.loserAddress, this.tossForm.get("bet").value)
   }
 }
 
