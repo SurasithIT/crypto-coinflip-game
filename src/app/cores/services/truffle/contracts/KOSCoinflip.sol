@@ -33,7 +33,7 @@ contract KOSCoinflip {
             uint256(
                 keccak256(abi.encodePacked(block.difficulty, block.timestamp))
             );
-        return uint16(randomHash);
+        return uint16(randomHash % 2);
     }
 
     function setPlayer(address _player1, address _player2) public {
@@ -41,17 +41,18 @@ contract KOSCoinflip {
         player2 = _player2;
     }
 
-    function bet(uint16 _address1res, uint16 _address2res)
-        public
-        view
-        returns (uint16, address)
-    {
+    function bet(
+        address _player1,
+        uint16 _address1res,
+        address _player2,
+        uint16 _address2res
+    ) public view returns (uint16, address) {
         uint16 answer = random();
         address winner;
         if (_address1res == answer) {
-            winner = player1;
+            winner = _player1;
         } else if (_address2res == answer) {
-            winner = player2;
+            winner = _player2;
         }
         return (answer, winner);
     }

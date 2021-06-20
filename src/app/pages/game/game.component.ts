@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ContractService } from 'src/app/cores/services/contract.service';
 
 @Component({
   selector: 'app-game',
@@ -16,7 +17,8 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   submit: boolean = false;
   res: any;
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private contractService: ContractService
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +63,13 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  tossedCoin($event: any) {
+  async tossedCoin($event: any) {
+    let _p1Addr = this.player1Form.get("address").value;
+    let _p1ans = coinFace[this.player1Form.get("selectedValue").value];
+    let _p2Addr = this.player2Form.get("address").value;
+    let _p2ans = coinFace[this.player2Form.get("selectedValue").value];
+
+    await this.contractService.bet(_p1Addr, parseInt(_p1ans), _p2Addr, parseInt(_p2ans));
     // this.flip();
     this.submit = true;
     console.log("tossCoin : ", $event)
