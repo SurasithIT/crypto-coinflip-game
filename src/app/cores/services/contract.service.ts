@@ -54,20 +54,4 @@ export class ContractService {
     public async getBalance(address: string): Promise<string> {
         return ethers.utils.formatEther(await this.provider.getBalance(address));
     }
-
-    //   public async getUserBalance(): Promise<number> {
-    //     let account = await this.getAccount();
-
-    //     return new Promise((resolve, reject) => {
-    //       let _web3 = this._web3;
-    //       this._tokenContract.balanceOf.call(account, function (err: any, result: any) {
-    //         if (err != null) {
-    //           reject(err);
-    //         }
-
-    //         resolve(_web3.fromWei(result));
-    //       });
-    //     }) as Promise<number>;
-    //   }
-    // this._tokenContract = this._web3.eth.contract(tokenAbi).at(this._tokenContractAddress);
 }
