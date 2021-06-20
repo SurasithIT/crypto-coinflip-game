@@ -1,8 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-coin-test',
+  selector: 'app-coin',
   templateUrl: './coin.component.html',
   styles: [
     `
@@ -51,9 +51,15 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
     ])
   ]
 })
-export class CoinComponent implements OnInit, AfterViewInit {
-  flipAction: boolean = true;
+export class CoinComponent implements OnInit, AfterViewInit, OnChanges {
+  @Input() flipAction: boolean = true;
+  @Output() res: EventEmitter<any> = new EventEmitter<any>();
+
   flip: string = 'inactive';
+  result: any = {
+    active: "BTC",
+    inactive: "ETH",
+  }
   constructor() { }
 
   ngOnInit(): void {
@@ -61,11 +67,17 @@ export class CoinComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+
+  }
+
+
+  ngOnChanges(): void {
     setTimeout(async () => {
       while (this.flipAction) {
         await this.toggleFlip();
       }
     }, 100)
+    this.res.emit(this.result[this.flip]);
   }
 
   toggleFlip() {

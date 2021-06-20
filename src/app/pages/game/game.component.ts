@@ -14,7 +14,7 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   player2Form: any;
   tossForm: any;
   submit: boolean = false;
-
+  res: any;
   constructor(
     private formBuilder: FormBuilder
   ) { }
@@ -69,6 +69,26 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
       return;
     }
     window.alert("Flip coin and see who will win.")
+  }
+
+  getFlipActionEvent($event: any) {
+    console.log($event)
+    if ($event == false) {
+      console.log("Stop")
+      console.log("resultKey : ", coinFace[this.res])
+      let winner: number = 0;
+      if (this.player1Form.get("selectedValue").value == this.res) {
+        winner = this.player1Form.get("playerNumber").value;
+      } else if (this.player2Form.get("selectedValue").value == this.res) {
+        winner = this.player2Form.get("playerNumber").value;
+      }
+      setTimeout(() => {
+        window.alert("Winner is player " + winner)
+      }, 1000)
+    }
+  }
+  getResult($event: any) {
+    this.res = $event;
   }
 }
 

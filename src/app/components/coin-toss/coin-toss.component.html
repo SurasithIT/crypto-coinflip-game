@@ -1,5 +1,5 @@
 <div>
-  <app-coin-test></app-coin-test>
+  <app-coin [flipAction]="flipAction" (res)="getResult($event)"></app-coin>
   <!-- <app-coin></app-coin> -->
   <br />
   <form [formGroup]="tossForm">
@@ -11,6 +11,7 @@
       <input matInput required placeholder="ETH" type="number" formControlName="bet">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="w-full" (click)="tossCoin()">Toss!!!</button>
+    <button mat-raised-button color="primary" [disabled]="flipAction == true && start == false" class=" w-full"
+      (click)="tossCoin()">Toss!!!</button>
   </form>
 </div>

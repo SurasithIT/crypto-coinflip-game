@@ -34,6 +34,8 @@ export class PlayerInfoComponent implements OnInit, OnChanges {
       me.playerValue.emit(this.playerForm);
       if (this.playerForm.get("address").value != null && this.playerForm.get("address").value != "") {
         this.balance = await this.contracService.getBalance(this.playerForm.get("address").value);
+      } else {
+        this.balance = "0";
       }
     });
   }
