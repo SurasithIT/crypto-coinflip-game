@@ -1,27 +1,34 @@
+
 # Crypto Coinflip Game
+the game let two players bet on coin flip (BTC and ETH)
+## How to run (locally)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+- run [Ganache](https://www.trufflesuite.com/ganache) with localhost port 8545
+- using angular serve command (if you didn't install, have to install with command `npm install -g @angular/cli`)
+`ng serve`
+- access the game with http://localhost:4200
 
-## Development server
+## Tech stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Web frontend using [Angular](https://angular.io/)
+- local ethereum network using [Ganache](https://www.trufflesuite.com/ganache)
+- Deploy smart contract by [Truffle](https://www.trufflesuite.com/)
+- Node JS library to connect with ethereum provider is [Ethers JS](https://docs.ethers.io/)
+- Wallet is using [MetaMask](https://metamask.io/)
 
-## Code scaffolding
+## Knowledge reference  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-  [Ethers JS](https://docs.ethers.io/v5/getting-started/)
+-  [Truffle Migrations Explained](https://www.sitepoint.com/truffle-migrations-explained/)
+-  [Build a DApp using Ethereum and Angular 6](https://walkingtree.tech/dapps-using-ethereum-angular/)
+-  [Ethers JS (my example project)](https://github.com/SurasithIT/EthersJS-App)
+-  [Angular animation flip card](https://embed.plnkr.co/plunk/PdjBGS)
+-  [Best practices for generating a random uint256](https://ethereum.stackexchange.com/questions/62375/best-practices-for-generating-a-random-uint256)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Task
+- [x] Create Web Application with mockup UI (has 2 player side with Coin select and wallet address and Coin toss).
+- [x] Create Smart contract with bet function and return winner with trasfer function to pay bet money.
+- [x] connect Web Application with MetaMask wallet for pay.
+- [ ] connect Web Application with smart contract for call contract function.
+- [ ] Deploy smart contract with testnet using Infura.
+- [ ] Deploy web app with Docker (with NGINX).
