@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Player } from 'src/app/pages/game/game.component';
 
 @Component({
   selector: 'app-player-info',
@@ -8,15 +7,9 @@ import { Player } from 'src/app/pages/game/game.component';
   styleUrls: ['./player-info.component.scss']
 })
 export class PlayerInfoComponent implements OnInit, OnChanges {
-  @Input() player: Player = {
-    playerNumber: 0,
-    address: "",
-    selectedValue: ""
-  };
-
   @Input() playerForm: any;
   @Output() playerValue: EventEmitter<any> = new EventEmitter<any>();
-  @Input() formSubmitted: boolean = false;
+  @Input() submit: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder

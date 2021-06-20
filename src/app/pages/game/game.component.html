@@ -25,14 +25,14 @@
 
 <mat-grid-list cols="3" rowHeight="100%">
   <mat-grid-tile>
-    <app-player-info [player]=player1 [playerForm]=player1Form (playerValue)="selectedValue($event)">
+    <app-player-info [playerForm]=player1Form (playerValue)="selectedValue($event)" [submit]="submit">
     </app-player-info>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-coin-toss (tossEvent)="tossedCoin($event)"></app-coin-toss>
+    <app-coin-toss [tossForm]=tossForm (tossEvent)="tossedCoin($event)" [submit]="submit"></app-coin-toss>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-player-info [player]=player2 [playerForm]=player2Form (playerValue)="selectedValue($event)">
+    <app-player-info [playerForm]=player2Form (playerValue)="selectedValue($event)" [submit]="submit">
     </app-player-info>
   </mat-grid-tile>
 </mat-grid-list>

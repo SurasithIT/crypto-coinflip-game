@@ -6,10 +6,13 @@
     <img src="/assets/Ethereum-ETH-icon.png" width="250rem">
   </div>
   <br />
-  <form class="example-form">
+  <form [formGroup]="tossForm">
+    <div *ngIf="submit && tossForm.controls.bet.errors?.required != null" class="form-invalid-waring">
+      Please input your money before
+    </div>
     <mat-form-field class="w-full" appearance="outline">
-      <mat-label>stake</mat-label>
-      <input matInput required placeholder="ETH" type="number">
+      <mat-label>Bet here (ETH)</mat-label>
+      <input matInput required placeholder="ETH" type="number" formControlName="bet">
     </mat-form-field>
 
     <button mat-raised-button color="primary" class="w-full" (click)="tossCoin()">Toss!!!</button>

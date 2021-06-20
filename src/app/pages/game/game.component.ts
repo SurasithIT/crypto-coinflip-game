@@ -9,21 +9,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   // @ViewChild('coin') coin:ElementRef; 
   // @ViewChild("coin") sort: ElementRef;
-  player1Selected = "";
-  player2Selected = "";
 
-  player1: Player = {
-    playerNumber: 1,
-    address: "",
-    selectedValue: ""
-  }
-  player2: Player = {
-    playerNumber: 2,
-    address: "",
-    selectedValue: ""
-  }
   player1Form: any;
   player2Form: any;
+  tossForm: any;
+  submit: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder
@@ -31,15 +21,19 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnInit(): void {
     this.player1Form = this.formBuilder.group({
-      playerNumber: [this.player1.playerNumber, Validators.required],
-      address: [this.player1.address, Validators.required],
-      selectedValue: [this.player1.selectedValue, Validators.required],
+      playerNumber: [1, Validators.required],
+      address: ["", Validators.required],
+      selectedValue: ["", Validators.required],
     })
 
     this.player2Form = this.formBuilder.group({
-      playerNumber: [this.player2.playerNumber, Validators.required],
-      address: [this.player2.address, Validators.required],
-      selectedValue: [this.player2.selectedValue, Validators.required],
+      playerNumber: [2, Validators.required],
+      address: ["", Validators.required],
+      selectedValue: ["", Validators.required],
+    })
+
+    this.tossForm = this.formBuilder.group({
+      bet: [0, Validators.required]
     })
   }
 
@@ -68,15 +62,16 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   tossedCoin($event: any) {
+    this.submit = true;
     console.log("tossCoin : ", $event)
     if (this.player1Form.invalid || this.player2Form.invalid) {
-      window.alert("Form invalid")
       return;
     }
+    window.alert("Flip coin and see who will win.")
   }
+
   flip() {
     if (this.player1Form.invalid || this.player2Form.invalid) {
-      window.alert("Form invalid")
       return;
     }
     console.log("Flip coin");
@@ -106,10 +101,4 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
 enum coinFace {
   BTC = 0,
   ETH = 1
-}
-
-export interface Player {
-  playerNumber: number;
-  address: string;
-  selectedValue: string;
 }

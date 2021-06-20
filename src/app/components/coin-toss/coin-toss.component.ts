@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-coin-toss',
@@ -7,9 +8,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class CoinTossComponent implements OnInit {
   @Output() tossEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
-  constructor() { }
+  @Input() tossForm: any;
+  @Input() submit: boolean = false;
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+
   }
 
   tossCoin() {

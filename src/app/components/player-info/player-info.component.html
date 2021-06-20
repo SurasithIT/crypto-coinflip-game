@@ -1,11 +1,16 @@
 <form [formGroup]="playerForm">
   <h3>Player {{playerForm.value.playerNumber}}</h3>
-
+  <div *ngIf="submit && playerForm.controls.address.errors?.required != null" class="form-invalid-waring">
+    Please insert your address
+  </div>
   <mat-form-field class="w-full" appearance="outline">
     <mat-label>address</mat-label>
     <input matInput required formControlName="address">
   </mat-form-field>
 
+  <div *ngIf="submit && playerForm.controls.selectedValue.errors?.required != null" class="form-invalid-waring">
+    Please select your coin
+  </div>
   <p>
     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style"
       formControlName="selectedValue">
