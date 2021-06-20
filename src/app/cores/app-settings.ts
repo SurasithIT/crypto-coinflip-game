@@ -28,6 +28,6 @@ export class AppSettings {
     };
 
     public static appBuildNo = "2021061901";
-    public static CONTRACT_ADDRESS = "0xCA743fC1D393ddD4B0561eA491B5176A6d9fC205"
+    public static CONTRACT_ADDRESS = "0x7ae749F8cA5Ed4715A0A0037768b47962Bd89DBf"
 
 }

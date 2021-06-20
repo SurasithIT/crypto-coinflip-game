@@ -66,36 +66,33 @@ const transfer = async (_transferTo, _transferFrom, _amount) => {
 //     value: ethers.utils.parseEther("10")
 // });
 
-const bet = async () => {
-  contract
-    .bet(1, 2)
-    .then((result) => {
-      console.log(result[0]);
-      console.log(result[1]);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-const setPlayer = async () => {
-  contractWithSigner
-    .setPlayer(
-      "0x0e280357a8Ff7844257452C2a40C9dD7B4ebD436",
-      "0x9A524a1f23C44572A1b0A9D278C1731f74EbcA50"
-    )
+const bet = async (player1addr, player1res, player2addr, player2res) => {
+  //call bet function from smart contract
+  let ms = Date.now();
+  console.log(ms);
+  return contract
+    .bet(player1addr, player1res, player2addr, player2res, ms)
     .then((result) => {
       console.log(result);
+      this.betResult = result;
+      return result;
     })
     .catch((err) => {
       console.log(err);
+      throw err;
     });
 };
 
+getSender();
 // setPlayer();
-// bet();
-transfer(
-  "0x0e280357a8Ff7844257452C2a40C9dD7B4ebD436",
+bet(
   "0x9A524a1f23C44572A1b0A9D278C1731f74EbcA50",
-  ethers.utils.parseEther("1")
+  1,
+  "0x9A524a1f23C44572A1b0A9D278C1731f74EbcA50",
+  0
 );
+// transfer(
+//   "0x0e280357a8Ff7844257452C2a40C9dD7B4ebD436",
+//   "0x9A524a1f23C44572A1b0A9D278C1731f74EbcA50",
+//   ethers.utils.parseEther("1")
+// );

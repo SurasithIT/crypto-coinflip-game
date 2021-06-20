@@ -86,11 +86,19 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
     let _p2ans = coinFace[this.player2Form.get("selectedValue").value];
 
     let betResult = await this.contractService.bet(_p1Addr, parseInt(_p1ans), _p2Addr, parseInt(_p2ans))
-      .catch((err) => { window.alert("Call smart contract error") });
-    let betResultValue = betResult[0]
-    this.betReult = betResultValue;
-    let betWinner = betResult[1]
-    console.log(`Result value is ${betResultValue} and winner is ${betWinner}`)
+      .catch((err) => {
+        window.alert("Call smart contract error")
+        console.error(err)
+      });
+    if (betResult && betResult.length > 1) {
+      let betResultValue = betResult[0]
+      this.betReult = betResultValue;
+      let betWinner = betResult[1]
+      console.log(`Result value is ${betResultValue} and winner is ${betWinner}`)
+
+    }
+
+
   }
 
   getFlipActionEvent($event: any) {
@@ -111,7 +119,7 @@ export class GameComponent implements OnInit, OnChanges, AfterViewInit {
       setTimeout(() => {
         window.alert("Winner is player " + winner)
       }, 1000)
-      this.transfer();
+      // this.transfer();
     }
   }
   getResult($event: any) {
