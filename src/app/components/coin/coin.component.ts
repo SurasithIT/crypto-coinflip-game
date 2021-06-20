@@ -61,14 +61,11 @@ export class CoinComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
     setTimeout(async () => {
       while (this.flipAction) {
         await this.toggleFlip();
       }
     }, 100)
-
-
   }
 
   toggleFlip() {

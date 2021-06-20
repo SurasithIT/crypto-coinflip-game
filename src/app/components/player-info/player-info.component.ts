@@ -25,21 +25,7 @@ export class PlayerInfoComponent implements OnInit, OnChanges {
     // })
   }
   async ngOnChanges(): Promise<void> {
-    // setTimeout(() => {
     this.onChanges();
-
-
-    //   this.dataForm.get("playerNumber").setValue(this.player.playerNumber);
-    //   this.dataForm.get("address").setValue(this.player.address);
-    //   this.dataForm.get("selectedValue").setValue(this.player.selectedValue);
-    // }, 1000)
-
-  }
-
-  onValChange(value: any) {
-    // console.log(this.dataForm)
-    // console.log(`Player number ${this.dataForm.get("playerNumber")} select ${value} (key is ${coinFace[value]})`)
-    // this.playerValue.emit(this.playerForm);
   }
 
   onChanges(): void {
