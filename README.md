@@ -8,8 +8,8 @@ the game let two players bet on coin flip (BTC and ETH)
 - install web dependency with command `npm i`
 - install truffle dependency with command `npm run init-contract`
 - deploy contract in local with command `npm run deploy-contract`
-- using angular serve command (if you didn't install, have to install with command `npm install -g @angular/cli`)
-  `ng serve`
+- using angular serve command `ng serve`
+  (if you didn't install, have to install with command `npm install -g @angular/cli`)
 - access the game with http://localhost:4200
 - connect MetaMask wallet with local ganache network and import yours wallet
 - insert wallet address of player 1 and 2
